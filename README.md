@@ -13,11 +13,11 @@ If used in libraries is not advised to expose `Result` to the library public API
 ### Install
 
 ```sh
-yarn add -D resful
+yarn add resful
 
-npm install -D resful
+npm install resful
 
-pnpm install -D resful
+pnpm install resful
 ```
 
 ### Basic usage
