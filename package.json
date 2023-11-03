@@ -3,6 +3,23 @@
   "type": "module",
   "version": "0.1.0",
   "description": "Type safe result utilities for TypeScript",
+  "keywords": [
+    "result",
+    "types",
+    "error",
+    "throw",
+    "function",
+    "immutable"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickfla1/resful.git"
+  },
+  "homepage": "https://github.com/nickfla1/resful#readme",
+  "bugs": {
+    "url": "https://github.com/nickfla1/resful/issues"
+  },
   "author": {
     "name": "Flavio (nickfla1) Lanternini Strippoli"
   },
