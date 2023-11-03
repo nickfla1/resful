@@ -1,0 +1,23 @@
+{
+  "name": "resful",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Type safe result utilities for TypeScript",
+  "author": {
+    "name": "Flavio (nickfla1) Lanternini Strippoli"
+  },
+  "scripts": {
+    "test": "vitest",
+    "build": "tsc"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "packageManager": "yarn@4.0.1",
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
+  }
+}
