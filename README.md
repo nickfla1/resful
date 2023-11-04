@@ -4,9 +4,9 @@ Type safe result utilities for TypeScript.
 
 ## Who should use this library?
 
-This library is intended for developer that want to void explicitly uses `Error` and `throw` in their TypeScript applications.
+This library is intended for developers that want to void explicitly uses of `Error` and `throw` in their TypeScript applications.
 
-If used in libraries is not advised to expose `Result` to the library public API. This library is thought for internal use only.
+If used in libraries iti is not advised to expose `Result` to the library public API. This library is thought for internal use only.
 
 ## How to use
 
@@ -19,6 +19,8 @@ npm install resful
 
 pnpm install resful
 ```
+
+> NOTE: Not tested on Bun
 
 ### Basic usage
 
@@ -105,7 +107,7 @@ const res = ok('foobar')
 unwrap(res) === 'foobar' // true
 ```
 
-### `unwrap`
+### `unwrapOr`
 
 Utility to unwrap the content of a result. Returning a compatible fallback value if it's an `ErrResult`.
 
