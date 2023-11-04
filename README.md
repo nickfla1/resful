@@ -1,5 +1,7 @@
 # resful
 
+![tests-workflow](https://github.com/nickfla1/resful/actions/workflows/ci-main-tests.yaml/badge.svg)
+
 Type safe result utilities for TypeScript.
 
 ## Who should use this library?
