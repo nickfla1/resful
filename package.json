@@ -24,7 +24,7 @@
     "name": "Flavio (nickfla1) Lanternini Strippoli"
   },
   "scripts": {
-    "test": "vitest",
+    "test": "vitest run",
     "build": "tsc"
   },
   "main": "dist/index.js",
