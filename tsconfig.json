@@ -3,9 +3,7 @@
     "allowJs": true,
     "declaration": true,
     "esModuleInterop": true,
-    "lib": [
-      "es2022"
-    ],
+    "lib": ["es2022"],
     "module": "NodeNext",
     "moduleDetection": "force",
     "moduleResolution": "NodeNext",
@@ -15,12 +13,8 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "src/**/*.test.ts"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.ts"]
 }

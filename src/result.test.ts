@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { ok, err, isOk, isErr, unwrap, unwrapOr, map, mapErr } from "./result";
+import { err, isErr, isOk, map, mapErr, ok, unwrap, unwrapOr } from "./result";
 
 test("creates an immutable ok result", () => {
   const res = ok("hello");
