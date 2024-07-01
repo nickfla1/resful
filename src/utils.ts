@@ -11,14 +11,8 @@ export function unwrap<T, E>(res: Result<T, E>): T {
 }
 
 export function unwrapOr<T, O extends T>(opt: Option<T>, fallback: O): T | O;
-export function unwrapOr<T, E, O extends T>(
-  res: Result<T, E>,
-  fallback: O
-): T | O;
-export function unwrapOr<T, E, O extends T>(
-  resOrOpt: Result<T, E> | Option<T>,
-  fallback: O
-): T | O {
+export function unwrapOr<T, E, O extends T>(res: Result<T, E>, fallback: O): T | O;
+export function unwrapOr<T, E, O extends T>(resOrOpt: Result<T, E> | Option<T>, fallback: O): T | O {
   if ("data" in resOrOpt) {
     return resOrOpt.data;
   }
@@ -28,10 +22,7 @@ export function unwrapOr<T, E, O extends T>(
 
 export function map<T, R>(opt: Option<T>, fn: (t: T) => R): Option<R>;
 export function map<T, E, R>(res: Result<T, E>, fn: (t: T) => R): Result<R, E>;
-export function map<T, E, R>(
-  resOrOpt: Result<T, E> | Option<T>,
-  fn: (t: T) => R
-): Result<R, E> | Option<R> {
+export function map<T, E, R>(resOrOpt: Result<T, E> | Option<T>, fn: (t: T) => R): Result<R, E> | Option<R> {
   if ("data" in resOrOpt) {
     const mapped = fn(resOrOpt.data);
 
@@ -41,10 +32,7 @@ export function map<T, E, R>(
   return resOrOpt;
 }
 
-export const mapErr = <T, E, R>(
-  res: Result<T, E>,
-  fn: (e: E) => R
-): Result<T, R> => {
+export const mapErr = <T, E, R>(res: Result<T, E>, fn: (e: E) => R): Result<T, R> => {
   if (isErr(res)) {
     return err(fn(res.err));
   }
@@ -61,12 +49,8 @@ function handleRunError(e: unknown) {
 }
 
 export function run<T, E>(fn: () => Result<T, E>): Result<T, E>;
-export function run<T, E>(
-  fn: () => Promise<Result<T, E>>
-): Promise<Result<T, E>>;
-export function run<T, E>(
-  fn: () => Promise<Result<T, E>> | Result<T, E>
-): Promise<Result<T, E>> | Result<T, E> {
+export function run<T, E>(fn: () => Promise<Result<T, E>>): Promise<Result<T, E>>;
+export function run<T, E>(fn: () => Promise<Result<T, E>> | Result<T, E>): Promise<Result<T, E>> | Result<T, E> {
   try {
     const value = fn();
 

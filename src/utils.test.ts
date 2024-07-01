@@ -1,8 +1,8 @@
 import { expect, test } from "vitest";
-import { map, mapErr, run, unwrap, unwrapOr } from "./utils.js";
-import { err, isErr, isOk, ok, type Result } from "./result.js";
 import { UnwrapError } from "./error.js";
-import { none, type Option, some } from "./option.js";
+import { type Option, none, some } from "./option.js";
+import { type Result, err, isErr, isOk, ok } from "./result.js";
+import { map, mapErr, run, unwrap, unwrapOr } from "./utils.js";
 
 test("should unwrap a success result", () => {
   expect(unwrap(ok("hello"))).toStrictEqual("hello");
@@ -31,17 +31,11 @@ test("it should map a result", () => {
 });
 
 test("mapError should map an error result", () => {
-  expect(mapErr(err("badcode"), (str) => str.replace("bad", "good"))).toEqual(
-    err("goodcode")
-  );
+  expect(mapErr(err("badcode"), (str) => str.replace("bad", "good"))).toEqual(err("goodcode"));
 });
 
 test("mapError should return the data of an ok result", () => {
-  expect(
-    mapErr(ok("badcode") as Result<string, string>, (str) =>
-      str.replace("bad", "good")
-    )
-  ).toEqual(ok("badcode"));
+  expect(mapErr(ok("badcode") as Result<string, string>, (str) => str.replace("bad", "good"))).toEqual(ok("badcode"));
 });
 
 test("it should map an option", () => {
@@ -49,9 +43,7 @@ test("it should map an option", () => {
 });
 
 test("it should map an none option", () => {
-  expect(map(none() as Option<string>, (str) => str.toUpperCase())).toEqual(
-    none()
-  );
+  expect(map(none() as Option<string>, (str) => str.toUpperCase())).toEqual(none());
 });
 
 test("run should sandbox an execution", () => {

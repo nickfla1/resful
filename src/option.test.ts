@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
-import { kOptionKind } from "./symbols.js";
 import { isNone, isOption, isSome, none, some } from "./option.js";
+import { kOptionKind } from "./symbols.js";
 
 test("creates an immutable option", () => {
   const res = some("hello");

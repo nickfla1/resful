@@ -19,6 +19,8 @@
   "scripts": {
     "test": "vitest run",
     "coverage": "vitest run --coverage",
+    "lint": "biome check",
+    "lint:write": "biome check --write",
     "build": "tsc"
   },
   "main": "dist/index.js",

@@ -32,12 +32,6 @@ export function isNone<T>(maybeNone: Option<T>): maybeNone is None {
   return maybeNone[kOptionKind] === KIND_NONE;
 }
 
-export function isOption<T = unknown>(
-  maybeOption: unknown
-): maybeOption is Option<T> {
-  return (
-    !!maybeOption &&
-    typeof maybeOption === "object" &&
-    kOptionKind in maybeOption
-  );
+export function isOption<T = unknown>(maybeOption: unknown): maybeOption is Option<T> {
+  return !!maybeOption && typeof maybeOption === "object" && kOptionKind in maybeOption;
 }

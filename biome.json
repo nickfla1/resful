@@ -20,13 +20,15 @@
   "formatter": {
     "enabled": true,
     "indentWidth": 2,
-    "indentStyle": "space"
+    "indentStyle": "space",
+    "formatWithErrors": true
   },
   "javascript": {
     "formatter": {
       "enabled": true,
       "semicolons": "always",
-      "trailingCommas": "none"
+      "trailingCommas": "none",
+      "lineWidth": 120
     }
   }
 }

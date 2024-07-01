@@ -24,12 +24,6 @@ export function isErr<T, E>(maybeErr: Result<T, E>): maybeErr is ErrResult<E> {
   return maybeErr[kResultKind] === KIND_ERR;
 }
 
-export function isResult<T = unknown, E = unknown>(
-  maybeResult: unknown
-): maybeResult is Result<T, E> {
-  return (
-    !!maybeResult &&
-    typeof maybeResult === "object" &&
-    kResultKind in maybeResult
-  );
+export function isResult<T = unknown, E = unknown>(maybeResult: unknown): maybeResult is Result<T, E> {
+  return !!maybeResult && typeof maybeResult === "object" && kResultKind in maybeResult;
 }
