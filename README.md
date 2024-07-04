@@ -27,8 +27,7 @@ pnpm install resful
 ### Basic usage
 
 ```ts
-import { ok, err, isOk } from 'resful'
-import type { Result } from 'resful'
+import { ok, err, isOk, type Result } from 'resful'
 
 const myFunc = (): Result<string, string> => {
     if (Math.random() > 0.5) {
@@ -133,26 +132,86 @@ unwrapOr(res, 'barbar') === 'barbar' // true
 
 Utility to map the content of an `OkResult` into another type.
 
-> NOTE: This utility will throw a `TypeError` if its input is an `ErrResult`
-
 ```ts
 import { map, ok } from 'resful'
 
 const res = ok('foobar')
 
-map(res, (value) => value.toUpperCase()) // 'FOOBAR'
+map(res, (value) => value.toUpperCase()) // { data: 'FOOBAR' }
 ```
 
 ### `mapErr`
 
 Utility to map the content of an `ErrResult` into another type.
 
-> NOTE: This utility will throw a `TypeError` if its input is an `OkResult`
-
 ```ts
 import { mapErr, err } from 'resful'
 
 const res = err('barbar')
 
-mapErr(res, (value) => value.toUpperCase()) // 'BARBAR'
+mapErr(res, (value) => value.toUpperCase()) // { err: 'BARBAR' }
 ```
+
+### `run`
+
+Utility to wrap a function inside a safe-ish context. `UnwrapError`s thrown inside are catched and returned as `ErrResult`s.
+
+> NOTE: This utility will _not_ handle unhandled non-`UnwrapError` thrown while executed.
+
+```ts
+import { run, ok, unwrap } from 'resful'
+
+const res = run(() => {
+    unwrap(err('oh no'))
+
+    ok('yes')
+})
+
+// or async
+
+const res = await run(async () => {
+    unwrap(await doStuff())
+
+    ok('yes')
+})
+```
+
+### `safe`
+
+Utility to wrap a function inside a safe context. All errors thrown inside are catched and returned as `ErrResult`s.
+
+See [`run`](#run) examples.
+
+### `box`
+
+Utility to wrap a function reference inside a safe-ish context. Same rules as [`run`](#run) apply.
+
+```ts
+import { box, ok, unwrap } from 'resful'
+
+function fn() {
+    unwrap(err('oh no'))
+
+    ok('yes')
+})
+
+const boxedFn = box(fn)
+
+const res = boxedFn()
+
+// or with arguments
+
+async function fn(what: string) {
+    ok(`yes, ${what}`)
+})
+
+const boxedFn = box(fn)
+
+const res = await boxedFn('sir')
+```
+
+### `safe`
+
+Utility to wrap a function reference inside a safe context. Same rules as [`safe`](#safe) apply.
+
+See [`box`](#box) examples.
