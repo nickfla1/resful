@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import { UnwrapError } from "./error.js";
 import { type Option, none, some } from "./option.js";
 import { type Result, err, isErr, isOk, ok } from "./result.js";
-import { map, mapErr, run, unwrap, unwrapOr } from "./utils.js";
+import { box, map, mapErr, run, safe, safeBox, unwrap, unwrapOr } from "./utils.js";
 
 test("should unwrap a success result", () => {
   expect(unwrap(ok("hello"))).toStrictEqual("hello");
@@ -83,4 +83,68 @@ test("run throws with non-unwrap errors", () => {
       return ok("hello");
     });
   }).toThrow();
+});
+
+test("safe should return an error result if an unwrap error happens inside", () => {
+  const res = safe(() => {
+    unwrap(err("fail"));
+
+    return ok("hello");
+  });
+
+  expect(isErr(res)).toBeTruthy();
+});
+
+test("safe should return an error result if a non-unwrap error happens inside", () => {
+  const res = safe(() => {
+    throw new Error("nope");
+  });
+
+  expect(isErr(res)).toBeTruthy();
+});
+
+test("safe should return an error result if an unwrap error happens inside", () => {
+  const res = safe(() => {
+    unwrap(err("fail"));
+
+    return ok("hello");
+  });
+
+  expect(isErr(res)).toBeTruthy();
+});
+
+test("safe should sandbox an execution", () => {
+  const res = safe(() => {
+    return ok("hello");
+  });
+
+  expect(isOk(res)).toBeTruthy();
+  expect(unwrap(res)).toStrictEqual("hello");
+});
+
+test("safe should sandbox an async execution", async () => {
+  const res = await safe(async () => {
+    return ok("hello");
+  });
+
+  expect(isOk(res)).toBeTruthy();
+  expect(unwrap(res)).toStrictEqual("hello");
+});
+
+test("box should sandbox a function reference", () => {
+  const fn = (a: string) => ok(a);
+  const boxed = box(fn);
+
+  const res = unwrap(boxed("hello"));
+
+  expect(res).toStrictEqual("hello");
+});
+
+test("safe should sandbox a function reference", () => {
+  const fn = (a: string) => ok(a);
+  const boxed = safeBox(fn);
+
+  const res = unwrap(boxed("hello"));
+
+  expect(res).toStrictEqual("hello");
 });

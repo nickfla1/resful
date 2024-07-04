@@ -7,3 +7,13 @@ export class UnwrapError<E> extends Error {
     this.originalError = error;
   }
 }
+
+export class RunError extends Error {
+  readonly originalError: unknown;
+
+  constructor(error: unknown) {
+    super("run error");
+
+    this.originalError = error;
+  }
+}
