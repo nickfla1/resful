@@ -1,7 +1,7 @@
 {
   "name": "resful",
   "type": "module",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Type safe result utilities for TypeScript",
   "keywords": ["result", "types", "error", "throw", "function", "immutable"],
   "license": "MIT",
