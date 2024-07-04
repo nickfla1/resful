@@ -166,9 +166,11 @@ const res = run(() => {
 
     ok('yes')
 })
+```
 
-// or async
+Or async
 
+```ts
 const res = await run(async () => {
     unwrap(await doStuff())
 
@@ -198,9 +200,11 @@ function fn() {
 const boxedFn = box(fn)
 
 const res = boxedFn()
+```
 
-// or with arguments
+Or with arguments
 
+```ts
 async function fn(what: string) {
     ok(`yes, ${what}`)
 })
@@ -210,7 +214,7 @@ const boxedFn = box(fn)
 const res = await boxedFn('sir')
 ```
 
-### `safe`
+### `safeBox`
 
 Utility to wrap a function reference inside a safe context. Same rules as [`safe`](#safe) apply.
 
